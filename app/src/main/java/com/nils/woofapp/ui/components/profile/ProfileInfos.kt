@@ -38,7 +38,7 @@ fun ProfileInfos() {
         horizontalArrangement = Arrangement.spacedBy(16.dp),
     ) {
         Column(Modifier.padding(16.dp)) {
-            Image(painter = painterResource(id = R.drawable.dominique), contentDescription = "profile picture", modifier = Modifier.size(53.dp) )
+            Image(painter = painterResource(id = R.drawable.dominique), contentDescription = "profile picture", modifier = Modifier.size(53.dp))
         }
         Column {
             Row {
@@ -46,7 +46,8 @@ fun ProfileInfos() {
                     text = "Dominique Dancre",
                     color = Color(0xFFFFFFFF),
                     fontSize = 14.sp,
-                    fontWeight = FontWeight.W700
+                    fontWeight = FontWeight.W700,
+                    fontFamily = montserratFont
                 )
             }
             Row {
