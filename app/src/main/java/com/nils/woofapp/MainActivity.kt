@@ -28,6 +28,9 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -56,6 +59,15 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+val montserratFont = FontFamily(
+    Font(R.font.montserrat_thin, FontWeight.Thin),
+    Font(R.font.montserrat_light, FontWeight.Light),
+    Font(R.font.montserrat_regular, FontWeight.Normal),
+    Font(R.font.montserrat_medium, FontWeight.Medium),
+    Font(R.font.montserrat_semibold, FontWeight.SemiBold),
+    Font(R.font.montserrat_bold, FontWeight.Bold)
+)
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

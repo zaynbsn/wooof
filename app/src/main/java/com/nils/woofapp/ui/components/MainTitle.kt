@@ -19,6 +19,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nils.woofapp.R
 import com.nils.woofapp.ui.theme.WoofAppTheme
+import com.nils.woofapp.ui.theme.WoofBlack
+import com.nils.woofapp.ui.theme.WoofGrey
 
 @Composable
 fun MainTitle(label: String, HasButton: Boolean = false, buttonLabel: String = "") {
@@ -31,7 +33,7 @@ fun MainTitle(label: String, HasButton: Boolean = false, buttonLabel: String = "
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Column {
-            Text(text = label, color = Color(0xFF313131), fontSize = 20.sp, fontWeight = FontWeight.W700)
+            Text(text = label, color = WoofBlack, fontSize = 20.sp, fontWeight = FontWeight.W700)
         }
         if (HasButton) {
             Column {
@@ -40,7 +42,7 @@ fun MainTitle(label: String, HasButton: Boolean = false, buttonLabel: String = "
                     horizontalArrangement = Arrangement.spacedBy(5.dp)
                 )
                 {
-                    Text(text = buttonLabel, color = Color(0xFF989898), fontSize = 14.sp)
+                    Text(text = buttonLabel, color = WoofGrey, fontSize = 14.sp)
                     Image(
                         imageVector = ImageVector.vectorResource(id = R.drawable.chevron),
                         contentDescription = "chevron"

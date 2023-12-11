@@ -11,10 +11,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material3.ExperimentalMaterial3Api
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
@@ -33,7 +30,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nils.woofapp.R
+import com.nils.woofapp.montserratFont
 import com.nils.woofapp.ui.theme.WoofAppTheme
+import com.nils.woofapp.ui.theme.WoofBlack
+import com.nils.woofapp.ui.theme.WoofPurple
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -64,7 +64,7 @@ fun SearchBar() {
                 onValueChange = { newText ->
                     text = newText
                 },
-                placeholder = { Text(text = "Chercher", color = Color(0xFF313131), fontSize = 14.sp) },
+                placeholder = { Text(text = "Chercher", color = WoofBlack, fontSize = 14.sp, fontFamily = montserratFont) },
                 shape = RoundedCornerShape(16.dp),
             )
         }
@@ -72,7 +72,7 @@ fun SearchBar() {
             Box(
                 Modifier
                 .size(48.dp)
-                .background(Color(0xFFA58EFF), shape = RoundedCornerShape(12.dp)),
+                .background(WoofPurple, shape = RoundedCornerShape(12.dp)),
                 contentAlignment = Alignment.Center
             ) {
                 Image(

@@ -30,6 +30,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nils.woofapp.R
+import com.nils.woofapp.montserratFont
 import com.nils.woofapp.ui.theme.WoofAppTheme
 
 @Composable
@@ -62,7 +63,7 @@ fun ProductCard() {
                         .fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween)
                     {
-                        Text(text = "Pour le 26.09", color = Color(0xFFFFFFFF), fontSize = 13.sp)
+                        Text(text = "Pour le 26.09", color = Color(0xFFFFFFFF), fontSize = 13.sp, fontFamily = montserratFont)
                         Icon(imageVector = Icons.Rounded.FavoriteBorder, contentDescription = null, tint = Color(0xFFFFFFFF), modifier = Modifier
                             .height(18.dp)
                             .width(20.dp))
@@ -85,7 +86,7 @@ fun ProductCard() {
                                 horizontalArrangement = Arrangement.spacedBy(4.dp)
                             ) {
                                 Image(painter = painterResource(id = R.drawable.profile_picture), contentDescription = "profile picture", modifier = Modifier.size(20.dp) )
-                                Text(text = "Dominique D.", color = Color(0xFFFFFFFF), fontSize = 13.sp)
+                                Text(text = "Dominique D.", color = Color(0xFFFFFFFF), fontSize = 13.sp, fontFamily = montserratFont)
                                 Image(imageVector = ImageVector.vectorResource(id = R.drawable.verify), contentDescription = "verify")
                             }
                         }
@@ -105,6 +106,7 @@ fun ProductCard() {
                     text = "Balader et nourir mon petit Roger",
                     fontSize = 16.sp,
                     fontWeight = FontWeight.W600,
+                    fontFamily = montserratFont,
                     modifier = Modifier.weight(1f)
                 )
             }

@@ -24,7 +24,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nils.woofapp.R
+import com.nils.woofapp.montserratFont
 import com.nils.woofapp.ui.theme.WoofAppTheme
+import com.nils.woofapp.ui.theme.WoofBlack
+import com.nils.woofapp.ui.theme.WoofGrey
 
 @Composable
 fun CategoryCard() {
@@ -48,10 +51,10 @@ fun CategoryCard() {
             }
             Column {
                 Row {
-                    Text(text = "Balade Proches", color = Color(0xFF313131), fontSize = 16.sp, fontWeight = FontWeight.W600)
+                    Text(text = "Balade Proches", color =  WoofBlack, fontSize = 16.sp, fontWeight = FontWeight.W600, fontFamily = montserratFont)
                 }
                 Row {
-                    Text(text = "24 disponibles", color = Color(0x80313180), fontSize = 14.sp, fontWeight = FontWeight.W500)
+                    Text(text = "24 disponibles", color = WoofGrey, fontSize = 14.sp, fontWeight = FontWeight.W500, fontFamily = montserratFont)
                 }
             }
         }
