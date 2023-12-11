@@ -18,7 +18,6 @@ import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.nils.woofapp.R
-import com.nils.woofapp.modules.feed.Feed
 import com.nils.woofapp.ui.theme.WoofAppTheme
 
 @Composable
@@ -32,20 +31,20 @@ fun CustomNavigationBar() {
         horizontalArrangement = Arrangement.SpaceAround,
         verticalAlignment = Alignment.CenterVertically,
     ) {
-        CustomNavigationBarItem(ImageVector.vectorResource(id = R.drawable.icon_menu_list))
-        CustomNavigationBarItem(ImageVector.vectorResource(id = R.drawable.icon_menu_heart))
-        CustomNavigationBarItem(ImageVector.vectorResource(id = R.drawable.icon_menu_chat))
-        CustomNavigationBarItem(ImageVector.vectorResource(id = R.drawable.icon_menu_user))
+        CustomNavigationBarItem(R.drawable.icon_menu_list)
+        CustomNavigationBarItem(R.drawable.icon_menu_heart)
+        CustomNavigationBarItem(R.drawable.icon_menu_chat)
+        CustomNavigationBarItem(R.drawable.icon_menu_user)
     }
 }
 
 @Composable
-fun CustomNavigationBarItem(icon: ImageVector) {
+fun CustomNavigationBarItem(icon: Int) {
     Column(Modifier
         .fillMaxHeight(),
     ) {
         Image(
-            imageVector = icon,
+            imageVector = ImageVector.vectorResource(id = icon),
             contentDescription = "list icon",
 
             modifier = Modifier.fillMaxHeight().size(24.dp)

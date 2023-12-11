@@ -8,7 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.nils.woofapp.modules.feed.ProductsSlideView
-import com.nils.woofapp.ui.components.feed.MainTitle
+import com.nils.woofapp.ui.components.MainTitle
 import com.nils.woofapp.ui.theme.WoofAppTheme
 
 @Composable

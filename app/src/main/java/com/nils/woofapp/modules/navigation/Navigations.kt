@@ -7,6 +7,7 @@ import androidx.navigation.compose.composable
 import com.nils.woofapp.NavigationItem
 import com.nils.woofapp.modules.favorites.Favorites
 import com.nils.woofapp.modules.feed.Feed
+import com.nils.woofapp.modules.profile.Profile
 
 @Composable
 fun Navigations(navController: NavHostController) {
@@ -21,7 +22,7 @@ fun Navigations(navController: NavHostController) {
             Feed()
         }
         composable(NavigationItem.Profile.route) {
-            Feed()
+            Profile()
         }
     }
 }

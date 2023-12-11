@@ -26,9 +26,11 @@ import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nils.woofapp.R
+import com.nils.woofapp.ui.theme.WoofAppTheme
 
 @Composable
 fun ProductCard() {
@@ -110,5 +112,13 @@ fun ProductCard() {
                 Image(imageVector = ImageVector.vectorResource(id = R.drawable.verify), contentDescription = "icon chat")
             }
         }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun ProductCardPreview() {
+    WoofAppTheme {
+        ProductCard()
     }
 }

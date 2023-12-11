@@ -1,4 +1,4 @@
-package com.nils.woofapp.ui.components.feed
+package com.nils.woofapp.ui.components
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
@@ -21,7 +21,7 @@ import com.nils.woofapp.R
 import com.nils.woofapp.ui.theme.WoofAppTheme
 
 @Composable
-fun MainTitle(label: String, HasButton: Boolean = false, buttonLabel: String = "") {
+fun SubTitle(label: String) {
     Row(
         Modifier
             .padding(horizontal = 24.dp)
@@ -31,30 +31,15 @@ fun MainTitle(label: String, HasButton: Boolean = false, buttonLabel: String = "
         horizontalArrangement = Arrangement.SpaceBetween,
     ) {
         Column {
-            Text(text = label, color = Color(0xFF313131), fontSize = 20.sp, fontWeight = FontWeight.W700)
-        }
-        if (HasButton) {
-            Column {
-                Row(
-                    verticalAlignment = Alignment.CenterVertically,
-                    horizontalArrangement = Arrangement.spacedBy(5.dp)
-                )
-                {
-                    Text(text = buttonLabel, color = Color(0xFF989898), fontSize = 14.sp)
-                    Image(
-                        imageVector = ImageVector.vectorResource(id = R.drawable.chevron),
-                        contentDescription = "chevron"
-                    )
-                }
-            }
+            Text(text = label, color = Color(0xFF181D27), fontSize = 14.sp, fontWeight = FontWeight.W500)
         }
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun MapAccessPreview() {
+fun SubTitlePreview() {
     WoofAppTheme {
-        MainTitle("Près de toi", true, "Sur la carte")
+        SubTitle("More")
     }
 }
