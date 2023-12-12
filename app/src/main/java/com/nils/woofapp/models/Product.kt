@@ -9,4 +9,5 @@ data class Product(
     val author: Author,
     val isFavorite: Boolean,
     val imageUrl: String,
+
 )

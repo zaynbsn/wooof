@@ -34,12 +34,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.nils.woofapp.managers.ProductsManager
 import com.nils.woofapp.models.Product
 import com.nils.woofapp.modules.feed.Feed
+import com.nils.woofapp.modules.login.LoginPage
 import com.nils.woofapp.modules.navigation.BottomNavigationBar
 import com.nils.woofapp.modules.navigation.Navigations
+import com.nils.woofapp.modules.signup.SignUp
 import com.nils.woofapp.ui.theme.WoofAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -74,31 +78,7 @@ val montserratFont = FontFamily(
 fun MainScreen(
     navController: NavHostController
 ) {
-    Scaffold(
-        bottomBar = {
-            BottomAppBar(modifier = Modifier) {
-                BottomNavigationBar(navController = navController)
-            }
-        },
-        floatingActionButton = {
-            FloatingActionButton(onClick = {}) {
-                Icon(Icons.Filled.Add, "Add")
-            }
-        }
-    ) { innerPadding ->
-        Box(
-            modifier = Modifier.padding(
-                PaddingValues(
-                    0.dp,
-                    0.dp,
-                    0.dp,
-                    innerPadding.calculateBottomPadding()
-                )
-            )
-        ) {
-            Navigations(navController = navController)
-        }
-    }
+    Navigations(navController = navController)
 }
 
 sealed class NavigationItem(var route: String, val icon: ImageVector?, var title: String) {
@@ -106,10 +86,11 @@ sealed class NavigationItem(var route: String, val icon: ImageVector?, var title
     object Favorites : NavigationItem("Chat", Icons.Rounded.FavoriteBorder, "Favorites")
     object Chat : NavigationItem("Profile", Icons.Filled.Send, "Chat")
     object Profile : NavigationItem("Profile", Icons.Rounded.Person, "Profile")
+    object Login : NavigationItem("Login", Icons.Filled.Send, "login")
+    object SignUp : NavigationItem("SignUp", Icons.Filled.Send, "SignUp")
+    object MainScreen : NavigationItem("MainScreen", Icons.Filled.Send, "MainScreen")
+    object BioData : NavigationItem("BioData", Icons.Filled.Send, "BioData")
 }
-
-
-
 
 @Composable
 fun Greetings(modifier: Modifier = Modifier) {
@@ -128,7 +109,13 @@ fun Greetings(modifier: Modifier = Modifier) {
 @Preview(showBackground = true)
 @Composable
 fun AppPreview() {
+    val navController = rememberNavController()
     WoofAppTheme {
-        Feed()
+        Surface(
+            modifier = Modifier.fillMaxSize(),
+            color = MaterialTheme.colorScheme.background
+        ) {
+            MainScreen(navController = navController)
+        }
     }
 }

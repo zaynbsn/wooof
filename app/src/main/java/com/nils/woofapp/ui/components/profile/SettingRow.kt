@@ -2,6 +2,7 @@ package com.nils.woofapp.ui.components.profile
 
 import  androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,7 +31,7 @@ import com.nils.woofapp.montserratFont
 import com.nils.woofapp.ui.theme.WoofGrey
 
 @Composable
-fun SettingRow(text: String, subText: String, icon: Int, switch: Boolean = false) {
+fun SettingRow(text: String, subText: String, icon: Int, switch: Boolean = false, onClick: (() -> Unit)? = null) {
     Row(
         Modifier
         .padding(horizontal = 24.dp)
@@ -77,7 +78,12 @@ fun SettingRow(text: String, subText: String, icon: Int, switch: Boolean = false
                 Image(
                     imageVector = ImageVector.vectorResource(id = R.drawable.chevron),
                     contentDescription = "chevron",
-                    modifier = Modifier.size(12.dp)
+                    modifier = if (onClick != null) {
+                        Modifier.clickable { onClick() }.size(12.dp)
+                    } else {
+                        Modifier.size(12.dp)
+                    }
+
                 )
             }
         }

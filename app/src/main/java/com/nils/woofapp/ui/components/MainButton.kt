@@ -1,5 +1,6 @@
 package com.nils.woofapp.ui.components
 
+import android.service.autofill.OnClickAction
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
@@ -18,10 +19,10 @@ import com.nils.woofapp.montserratFont
 import com.nils.woofapp.ui.theme.WoofPurple
 
 @Composable
-fun MainButton(label: String) {
+fun MainButton(label: String, onClickAction: () -> Unit) {
     Button(modifier = Modifier
         .padding(top = 16.dp),
-        onClick = { onClick() },
+        onClick = { onClickAction.invoke() },
         colors = ButtonDefaults.buttonColors(containerColor = WoofPurple), // Change color here
         shape = RoundedCornerShape(16.dp)
     ) {

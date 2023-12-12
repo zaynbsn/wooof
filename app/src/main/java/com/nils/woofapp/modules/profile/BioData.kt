@@ -12,6 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.nils.woofapp.NavigationItem
 import com.nils.woofapp.ui.components.Dropdown
 import com.nils.woofapp.ui.components.Input
 import com.nils.woofapp.ui.components.MainButton
@@ -19,7 +23,7 @@ import com.nils.woofapp.ui.components.profile.biodata.BioDataHeader
 import com.nils.woofapp.ui.theme.WoofAppTheme
 
 @Composable
-fun BioData() {
+fun BioData(navController: NavHostController) {
     Column(
         Modifier
             .fillMaxSize()
@@ -35,7 +39,9 @@ fun BioData() {
             Input("Et ton nom de famille ?")
             Input("Numéro de téléphone")
             Dropdown()
-            MainButton(label = "Mettre à jour le profil")
+            MainButton(label = "Mettre à jour le profil"){
+                navController.navigate(NavigationItem.Profile.route)
+            }
 
         }
 
@@ -50,7 +56,8 @@ fun onClick() {
 @Preview(showBackground = true)
 @Composable
 fun BioDataPreview() {
+    val navController = rememberNavController()
     WoofAppTheme {
-        BioData()
+        BioData(navController = navController)
     }
 }

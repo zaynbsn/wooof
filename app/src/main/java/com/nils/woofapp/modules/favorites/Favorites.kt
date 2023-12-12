@@ -7,12 +7,14 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
 import com.nils.woofapp.modules.feed.ProductsSlideView
 import com.nils.woofapp.ui.components.MainTitle
 import com.nils.woofapp.ui.theme.WoofAppTheme
 
 @Composable
-fun Favorites() {
+fun Favorites(navController: NavHostController) {
     Column(
         Modifier
             .fillMaxSize()
@@ -28,7 +30,8 @@ fun Favorites() {
 @Preview(showBackground = true)
 @Composable
 fun FavoritesPreview() {
+    val navController = rememberNavController()
     WoofAppTheme {
-        Favorites()
+        Favorites(navController = navController)
     }
 }

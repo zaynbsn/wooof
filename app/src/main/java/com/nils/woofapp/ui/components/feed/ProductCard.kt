@@ -21,20 +21,25 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import coil.compose.rememberAsyncImagePainter
 import com.nils.woofapp.R
+import com.nils.woofapp.models.Product
 import com.nils.woofapp.montserratFont
 import com.nils.woofapp.ui.theme.WoofAppTheme
+import com.nils.woofapp.ui.theme.WoofBlack
 
 @Composable
-fun ProductCard() {
+fun ProductCard(product: Product) {
     Column(
         Modifier
             .width(264.dp)
@@ -49,9 +54,12 @@ fun ProductCard() {
                 .width(230.dp)
                 .height(230.dp),) {
                 Image(modifier = Modifier
-                    .fillMaxSize(),
-                    painter = painterResource(id = R.drawable.img_dog_card),
-                    contentDescription = "dog card")
+                    .fillMaxSize()
+                    .clip(RoundedCornerShape(16.dp)),
+                    painter = rememberAsyncImagePainter(product.imageUrl),
+                    contentDescription = "image",
+                    contentScale = ContentScale.Crop,
+                )
                 Column(
                     Modifier
                         .fillMaxSize()
@@ -63,7 +71,7 @@ fun ProductCard() {
                         .fillMaxWidth(),
                         horizontalArrangement = Arrangement.SpaceBetween)
                     {
-                        Text(text = "Pour le 26.09", color = Color(0xFFFFFFFF), fontSize = 13.sp, fontFamily = montserratFont)
+                        Text(text = "Pour le ${product.date}", color = Color(0xFFFFFFFF), fontSize = 13.sp, fontFamily = montserratFont)
                         Icon(imageVector = Icons.Rounded.FavoriteBorder, contentDescription = null, tint = Color(0xFFFFFFFF), modifier = Modifier
                             .height(18.dp)
                             .width(20.dp))
@@ -85,8 +93,12 @@ fun ProductCard() {
                                 verticalAlignment = Alignment.CenterVertically,
                                 horizontalArrangement = Arrangement.spacedBy(4.dp)
                             ) {
-                                Image(painter = painterResource(id = R.drawable.profile_picture), contentDescription = "profile picture", modifier = Modifier.size(20.dp) )
-                                Text(text = "Dominique D.", color = Color(0xFFFFFFFF), fontSize = 13.sp, fontFamily = montserratFont)
+                                Image(modifier = Modifier
+                                    .size(20.dp),
+                                    painter = rememberAsyncImagePainter(product.author.profilePictureUrl),
+                                    contentDescription = "profile picture"
+                                )
+                                Text(text = product.author.firstName, color = Color(0xFFFFFFFF), fontSize = 13.sp, fontFamily = montserratFont)
                                 Image(imageVector = ImageVector.vectorResource(id = R.drawable.verify), contentDescription = "verify")
                             }
                         }
@@ -103,7 +115,7 @@ fun ProductCard() {
         ) {
             Column {
                 Text(
-                    text = "Balader et nourir mon petit Roger",
+                    text = product.title,
                     fontSize = 16.sp,
                     fontWeight = FontWeight.W600,
                     fontFamily = montserratFont,
@@ -121,6 +133,6 @@ fun ProductCard() {
 @Composable
 fun ProductCardPreview() {
     WoofAppTheme {
-        ProductCard()
+        // ProductCard()
     }
 }
