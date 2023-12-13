@@ -2,6 +2,7 @@ package com.nils.woofapp.ui.components.feed
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -39,12 +40,13 @@ import com.nils.woofapp.ui.theme.WoofAppTheme
 import com.nils.woofapp.ui.theme.WoofBlack
 
 @Composable
-fun ProductCard(product: Product) {
+fun ProductCard(product: Product, onClick: () -> Unit) {
     Column(
         Modifier
             .width(264.dp)
             .height(326.dp)
             .background(color = Color.White, shape = RoundedCornerShape(28.dp))
+            .clickable { onClick() }
     ) {
         Row(
             Modifier

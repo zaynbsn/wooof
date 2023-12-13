@@ -18,25 +18,28 @@ object ProductsManager: ViewModel() {
     private val _products = MutableStateFlow<List<Product>>(emptyList())
     val products = _products.asStateFlow()
 
+    private val _selectedProduct = MutableStateFlow<Product?>(null)
+    val selectedProduct = _selectedProduct.asStateFlow()
 
-    fun getProductAsync() {
-        val db = Firebase.firestore
-
-        viewModelScope.launch {
-            try {
-                val result = db.collection("products").get().await()
-
-                val productList = result.documents.map { document ->
-                    document.toObject(Product::class.java) ?: throw Exception("Unable to parse product")
-                }
-
-                _products.value = productList
-            } catch (e: Exception) {
-                // Gérer les erreurs ici
-                Log.e("ProductsManager", "Error getting products", e)
-            }
-        }
+    fun updateSelectedProduct(product: Product) {
+        _selectedProduct.value = product
     }
+
+    fun getProductById() {
+        val db = Firebase.firestore
+        db.collection("users")
+            // .whereEqualTo("id", _selectedProduct.value.id)
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    Log.d(TAG, "${document.id} => ${document.data}")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w(TAG, "Error getting documents.", exception)
+            }
+    }
+
     fun getProducts() {
         val db = Firebase.firestore
         db.collection("products")
@@ -98,23 +101,7 @@ object ProductsManager: ViewModel() {
             }
     }
 
-    fun getProductsTest() {
-        // TODO : get product from firebase
-        // _products = retourDeFirebase
-        _products.value =
-            listOf(
-                Product(
-                    "title",
-                    "description",
-                    50.0,
-                    "20/09/2023",
-                    Place(1.111, 0.2222, "paris"),
-                    Author("Jack", "Sparrow", 4.8, "", true),
-                    true,
-                    "imageUrl"
-                )
-            )
-    }
+
 
 
 }

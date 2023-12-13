@@ -5,6 +5,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.nils.woofapp.NavigationItem
+import com.nils.woofapp.models.Product
+import com.nils.woofapp.modules.details.Details
 import com.nils.woofapp.modules.favorites.Favorites
 import com.nils.woofapp.modules.feed.Feed
 import com.nils.woofapp.modules.login.LoginPage
@@ -35,6 +37,9 @@ fun Navigations(navController: NavHostController) {
         }
         composable(NavigationItem.BioData.route) {
             BioData(navController = navController)
+        }
+        composable(NavigationItem.Details.route) {
+            Details(navController = navController)
         }
     }
 }

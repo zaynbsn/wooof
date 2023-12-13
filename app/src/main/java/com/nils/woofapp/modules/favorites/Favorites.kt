@@ -21,9 +21,9 @@ fun Favorites(navController: NavHostController) {
             .verticalScroll(rememberScrollState()),
     ) {
         MainTitle("Gardes à venir")
-        ProductsSlideView()
+        ProductsSlideView(navController = navController)
         MainTitle("Gardes passées")
-        ProductsSlideView()
+        ProductsSlideView(navController = navController)
     }
 }
 

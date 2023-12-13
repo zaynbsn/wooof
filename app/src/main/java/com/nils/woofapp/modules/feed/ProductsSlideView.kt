@@ -14,12 +14,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavHostController
+import androidx.navigation.compose.rememberNavController
+import com.nils.woofapp.NavigationItem
 import com.nils.woofapp.managers.ProductsManager
 import com.nils.woofapp.ui.components.feed.ProductCard
 import com.nils.woofapp.ui.theme.WoofAppTheme
 
 @Composable
-fun ProductsSlideView() {
+fun ProductsSlideView(navController: NavHostController) {
     val productsManager = remember { ProductsManager }
     LaunchedEffect(key1 = true) {
         productsManager.getProducts()
@@ -34,7 +37,13 @@ fun ProductsSlideView() {
         horizontalArrangement = Arrangement.spacedBy(16.dp)
     ) {
         for (product in productsState) {
-            ProductCard(product = product)
+            ProductCard(
+                product = product,
+                onClick = {
+                    productsManager.updateSelectedProduct(product)
+                    navController.navigate(NavigationItem.Details.route)
+                }
+            )
         }
     }
 }
@@ -42,7 +51,8 @@ fun ProductsSlideView() {
 @Preview(showBackground = true)
 @Composable
 fun ProductsSlideViewPreview() {
+    val navController = rememberNavController()
     WoofAppTheme {
-        ProductsSlideView()
+        ProductsSlideView(navController)
     }
 }

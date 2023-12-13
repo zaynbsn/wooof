@@ -90,6 +90,7 @@ sealed class NavigationItem(var route: String, val icon: ImageVector?, var title
     object SignUp : NavigationItem("SignUp", Icons.Filled.Send, "SignUp")
     object MainScreen : NavigationItem("MainScreen", Icons.Filled.Send, "MainScreen")
     object BioData : NavigationItem("BioData", Icons.Filled.Send, "BioData")
+    object Details : NavigationItem("Details", Icons.Filled.Send, "Details")
 }
 
 @Composable

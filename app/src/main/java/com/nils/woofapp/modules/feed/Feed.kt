@@ -57,7 +57,7 @@ fun Feed(navController: NavHostController) {
             ) {
                 SearchBar()
                 MainTitle("Près de toi", true, "Sur la carte")
-                ProductsSlideView()
+                ProductsSlideView(navController = navController)
                 MainTitle("Catégories", true, "Voir tout")
                 CategoryListView()
             }
