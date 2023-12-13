@@ -28,42 +28,17 @@ import com.nils.woofapp.ui.theme.WoofAppTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Feed(navController: NavHostController) {
-    Scaffold(
-        bottomBar = {
-            BottomAppBar(modifier = Modifier) {
-                BottomNavigationBar(navController = navController)
-            }
-        },
-        floatingActionButton = {
-            FloatingActionButton(onClick = {}) {
-                Icon(Icons.Filled.Add, "Add")
-            }
-        }
-    ) { innerPadding ->
-        Box(
-            modifier = Modifier.padding(
-                PaddingValues(
-                    0.dp,
-                    0.dp,
-                    0.dp,
-                    innerPadding.calculateBottomPadding()
-                )
-            )
-        ) {
-            Column(
-                Modifier
-                    .fillMaxSize()
-                    .verticalScroll(rememberScrollState()),
-            ) {
-                SearchBar()
-                MainTitle("Près de toi", true, "Sur la carte")
-                ProductsSlideView(navController = navController)
-                MainTitle("Catégories", true, "Voir tout")
-                CategoryListView()
-            }
-        }
+    Column(
+        Modifier
+            .fillMaxSize()
+            .verticalScroll(rememberScrollState()),
+    ) {
+        SearchBar()
+        MainTitle("Près de toi", true, "Sur la carte")
+        ProductsSlideView(navController = navController)
+        MainTitle("Catégories", true, "Voir tout")
+        CategoryListView()
     }
-
 }
 
 @Preview(showBackground = true)
