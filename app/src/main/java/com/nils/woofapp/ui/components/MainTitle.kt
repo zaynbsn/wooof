@@ -10,7 +10,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.text.font.FontWeight
@@ -23,7 +22,7 @@ import com.nils.woofapp.ui.theme.WoofBlack
 import com.nils.woofapp.ui.theme.WoofGrey
 
 @Composable
-fun MainTitle(label: String, HasButton: Boolean = false, buttonLabel: String = "") {
+fun MainTitle(label: String, hasButton: Boolean = false, buttonLabel: String = "") {
     Row(
         Modifier
             .padding(horizontal = 24.dp)
@@ -35,7 +34,7 @@ fun MainTitle(label: String, HasButton: Boolean = false, buttonLabel: String = "
         Column {
             Text(text = label, color = WoofBlack, fontSize = 20.sp, fontWeight = FontWeight.W700)
         }
-        if (HasButton) {
+        if (hasButton) {
             Column {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,

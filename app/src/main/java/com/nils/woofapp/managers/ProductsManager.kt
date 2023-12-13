@@ -3,7 +3,6 @@ package com.nils.woofapp.managers
 import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
 import com.nils.woofapp.models.Author
@@ -11,8 +10,6 @@ import com.nils.woofapp.models.Place
 import com.nils.woofapp.models.Product
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 
 object ProductsManager: ViewModel() {
     private val _products = MutableStateFlow<List<Product>>(emptyList())
@@ -23,21 +20,6 @@ object ProductsManager: ViewModel() {
 
     fun updateSelectedProduct(product: Product) {
         _selectedProduct.value = product
-    }
-
-    fun getProductById() {
-        val db = Firebase.firestore
-        db.collection("users")
-            // .whereEqualTo("id", _selectedProduct.value.id)
-            .get()
-            .addOnSuccessListener { result ->
-                for (document in result) {
-                    Log.d(TAG, "${document.id} => ${document.data}")
-                }
-            }
-            .addOnFailureListener { exception ->
-                Log.w(TAG, "Error getting documents.", exception)
-            }
     }
 
     fun getProducts() {
