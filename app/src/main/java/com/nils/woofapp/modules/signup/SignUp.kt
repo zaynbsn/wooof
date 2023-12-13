@@ -237,7 +237,7 @@ fun addProduct() {
             lastName = "Garcia",
             note = 5.0,
             profilePictureUrl = "https://example.com/isabellagarcia.jpg",
-            isCertified = true
+            certified = true
         ),
         isFavorite = false,
         imageUrl = "https://example.com/dog_vip_stay.jpg"

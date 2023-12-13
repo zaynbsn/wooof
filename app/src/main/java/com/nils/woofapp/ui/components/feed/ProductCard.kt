@@ -78,7 +78,7 @@ fun ProductCard(product: Product, onClick: () -> Unit) {
                     Row(
                         Modifier
                         .background(
-                            color = Color(255, 255, 255, 90),
+                            color = Color(40, 40, 40, 90),
                             shape = RoundedCornerShape(30.dp)
                         ),
                         verticalAlignment = Alignment.CenterVertically,
@@ -93,12 +93,17 @@ fun ProductCard(product: Product, onClick: () -> Unit) {
                                 horizontalArrangement = Arrangement.spacedBy(4.dp)
                             ) {
                                 Image(modifier = Modifier
-                                    .size(20.dp),
+                                    .size(24.dp),
                                     painter = rememberAsyncImagePainter(product.author.profilePictureUrl),
                                     contentDescription = "profile picture"
                                 )
                                 Text(text = product.author.firstName, color = Color(0xFFFFFFFF), fontSize = 13.sp, fontFamily = montserratFont)
-                                Image(imageVector = ImageVector.vectorResource(id = R.drawable.verify), contentDescription = "verify")
+                                if (product?.author?.certified == true) {
+                                    Image(
+                                        imageVector = ImageVector.vectorResource(id = R.drawable.verify),
+                                        contentDescription = "verify"
+                                    )
+                                }
                             }
                         }
                     }

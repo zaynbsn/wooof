@@ -30,7 +30,6 @@ fun ProfileInfos() {
     Row(
         Modifier
             .padding(horizontal = 24.dp)
-            .padding(top = 16.dp)
             .fillMaxWidth()
             .background(WoofPurple, shape = RoundedCornerShape(16.dp))
             .shadow(elevation = 44.dp, spotColor = Color(0x0F000000), ambientColor = Color(0x0F000000)),

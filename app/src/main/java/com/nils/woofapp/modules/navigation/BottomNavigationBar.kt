@@ -14,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.navigation.NavController
 import com.nils.woofapp.NavigationItem
+import com.nils.woofapp.ui.theme.WoofPurple
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {

@@ -1,6 +1,7 @@
 package com.nils.woofapp
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
@@ -8,8 +9,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Send
@@ -41,12 +40,8 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.nils.woofapp.managers.ProductsManager
 import com.nils.woofapp.models.Product
-import com.nils.woofapp.modules.feed.CategoryListView
-import com.nils.woofapp.modules.feed.ProductsSlideView
 import com.nils.woofapp.modules.navigation.BottomNavigationBar
 import com.nils.woofapp.modules.navigation.Navigations
-import com.nils.woofapp.ui.components.MainTitle
-import com.nils.woofapp.ui.components.feed.SearchBar
 import com.nils.woofapp.ui.theme.WoofAppTheme
 
 class MainActivity : ComponentActivity() {
@@ -81,52 +76,60 @@ val montserratFont = FontFamily(
 fun MainScreen(
     navController: NavHostController
 ) {
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    
-    when (val currentRoute = navBackStackEntry?.destination?.route) {
-        NavigationItem.Login.route,
-        NavigationItem.SignUp.route,
-        NavigationItem.BioData.route,
-        NavigationItem.Details.route -> {
-            Navigations(navController = navController)
-        } else -> {
-            Scaffold(
-                bottomBar = {
-                    BottomAppBar(modifier = Modifier) {
-                        BottomNavigationBar(navController = navController)
-                    }
-                },
-                floatingActionButton = {
-                    FloatingActionButton(onClick = {}) {
-                        Icon(Icons.Filled.Add, "Add")
-                    }
-                }
-            ) { innerPadding ->
-                Box(
-                    modifier = Modifier.padding(
-                        PaddingValues(
-                            0.dp,
-                            0.dp,
-                            0.dp,
-                            innerPadding.calculateBottomPadding()
-                        )
-                    )
-                ) {
-                    Navigations(navController = navController)
+    val currentRoute = currentRoute(navController)
+
+    val showBottomNavigationBar = currentRoute in listOf(
+        NavigationItem.Feed.route,
+        NavigationItem.Favorites.route,
+        NavigationItem.Chat.route,
+        NavigationItem.Profile.route
+    )
+
+    Scaffold(
+        bottomBar = {
+            if (showBottomNavigationBar) {
+                BottomAppBar(modifier = Modifier) {
+                    BottomNavigationBar(navController = navController)
                 }
             }
+        },
+        floatingActionButton = {
+            if (showBottomNavigationBar) {
+                FloatingActionButton(onClick = {}) {
+                    Icon(Icons.Filled.Add, "Add")
+                }
+            }
+        }
+    ) { innerPadding ->
+        Box(
+            modifier = Modifier.padding(
+                PaddingValues(
+                    0.dp,
+                    0.dp,
+                    0.dp,
+                    innerPadding.calculateBottomPadding()
+                )
+            )
+        ) {
+            Navigations(navController = navController)
         }
     }
 }
 
+@Composable
+private fun currentRoute(navController: NavHostController): String? {
+    val navBackStackEntry by navController.currentBackStackEntryAsState()
+    navBackStackEntry?.destination?.route?.let { Log.d("TAG", it) }
+    return navBackStackEntry?.destination?.route
+}
+
 sealed class NavigationItem(var route: String, val icon: ImageVector?, var title: String) {
     object Feed : NavigationItem("Feed", Icons.Rounded.List, "Feed")
-    object Favorites : NavigationItem("Chat", Icons.Rounded.FavoriteBorder, "Favorites")
-    object Chat : NavigationItem("Profile", Icons.Filled.Send, "Chat")
+    object Favorites : NavigationItem("Favorites", Icons.Rounded.FavoriteBorder, "Favorites")
+    object Chat : NavigationItem("Chat", Icons.Filled.Send, "Chat")
     object Profile : NavigationItem("Profile", Icons.Rounded.Person, "Profile")
     object Login : NavigationItem("Login", Icons.Filled.Send, "login")
     object SignUp : NavigationItem("SignUp", Icons.Filled.Send, "SignUp")
-    object MainScreen : NavigationItem("MainScreen", Icons.Filled.Send, "MainScreen")
     object BioData : NavigationItem("BioData", Icons.Filled.Send, "BioData")
     object Details : NavigationItem("Details", Icons.Filled.Send, "Details")
 }

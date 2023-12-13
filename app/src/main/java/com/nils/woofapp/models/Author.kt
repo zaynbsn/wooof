@@ -5,5 +5,5 @@ data class Author(
     val lastName: String,
     val note: Double,
     val profilePictureUrl: String,
-    val isCertified: Boolean,
+    val certified: Boolean,
 )

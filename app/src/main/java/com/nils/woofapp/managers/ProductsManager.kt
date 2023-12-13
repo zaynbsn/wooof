@@ -52,7 +52,7 @@ object ProductsManager: ViewModel() {
                             lastName = authorData["lastName"] as? String ?: "",
                             note = authorData["note"] as? Double ?: 0.0,
                             profilePictureUrl = authorData["profilePictureUrl"] as? String ?: "",
-                            isCertified = authorData["isCertified"] as? Boolean ?: false
+                            certified = authorData["certified"] as? Boolean ?: false
                         )
                     } else {
                         Author("", "", 0.0, "", false)
