@@ -15,6 +15,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import com.google.firebase.auth.FirebaseAuth
 import com.nils.woofapp.NavigationItem
 import com.nils.woofapp.R
 import com.nils.woofapp.ui.components.MainTitle
@@ -51,7 +52,15 @@ fun Profile(navController: NavHostController) {
                 }
             )
             SettingRow(text = "Face ID / Touch ID", subText = "Gère la sécurité", icon = R.drawable.icon_lock, switch = true)
-            SettingRow(text = "Déconnexion", subText = "On se revoit bientôt ?", icon = R.drawable.icon_logout)
+            SettingRow(
+                text = "Déconnexion",
+                subText = "On se revoit bientôt ?",
+                icon = R.drawable.icon_logout,
+                onClick = {
+                    val auth = FirebaseAuth.getInstance()
+                    auth.signOut()
+                }
+            )
         }
         SubTitle("More")
         Column(
